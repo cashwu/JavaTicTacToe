@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TicTacToeSpec {
@@ -34,6 +35,22 @@ public class TicTacToeSpec {
         assertThrows(RuntimeException.class,
                 () -> ticTacToe.play(2, 1));
     }
+
+
+    @Test
+    void givenFirstTurnWhenNextPlayerThenX() {
+        assertEquals('X', ticTacToe.nextPlayer());
+    }
+
+    @Test
+    void givenLastTurnWhenWasXWhenNextPlayerThenO() {
+        ticTacToe.play(1, 1);
+        assertEquals('O', ticTacToe.nextPlayer());
+    }
+
+
+
+
 
 
 
