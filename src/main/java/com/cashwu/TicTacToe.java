@@ -15,13 +15,14 @@ public class TicTacToe {
         }
     }
 
-    public void play(int x, int y) {
+    public String play(int x, int y) {
 
         checkAxis(y);
         checkAxis(x);
         setBox(x, y);
 
         lastPlayer = nextPlayer();
+        return "no winner";
     }
 
     private void setBox(int x, int y) {
