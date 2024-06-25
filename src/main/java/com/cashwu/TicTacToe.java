@@ -38,6 +38,10 @@ public class TicTacToe {
            return true;
         }
 
+        if (board[0][2] + board[1][1] + board[2][0] == playerTotal) {
+            return true;
+        }
+
         for (int i = 0; i < SIZE; i++) {
             int horizontalLine = board[0][i] + board[1][i] + board[2][i];
             if (horizontalLine == playerTotal) {

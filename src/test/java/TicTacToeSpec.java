@@ -88,6 +88,16 @@ public class TicTacToeSpec {
         assertEquals("X is winner", actual);
     }
 
+    @Test
+    void whenPlayAndBottomTopDiagonalLineThenWinner() {
+        ticTacToe.play(1, 3); // X
+        ticTacToe.play(1, 2); // O
+        ticTacToe.play(2, 2); // X
+        ticTacToe.play(2, 3); // O
+        String actual = ticTacToe.play(3, 1);// X
+        assertEquals("X is winner", actual);
+    }
+
 
 
 
