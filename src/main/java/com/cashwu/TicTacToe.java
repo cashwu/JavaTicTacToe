@@ -24,37 +24,47 @@ public class TicTacToe {
 
         setBox(x, y);
 
-        if (isWin()) {
+        if (isWin(x, y)) {
             return lastPlayer + " is winner";
+        }
+        if (isDraw()) {
+            return "draw" ;
         }
 
         return "no winner";
     }
 
-    private boolean isWin() {
+    private boolean isDraw() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (board[i][j] == '\0') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean isWin(int x, int y) {
         int playerTotal = lastPlayer * SIZE;
 
         var diagonal1 = '\0';
         var diagonal2 = '\0';
+        var horizontal = '\0';
+        var vertical = '\0';
 
         for (int i = 0; i < SIZE; i++) {
             diagonal1 += board[i][i];
             diagonal2 += board[i][SIZE - i - 1];
 
-            int horizontalLine = board[0][i] + board[1][i] + board[2][i];
-            if (horizontalLine == playerTotal) {
-               return true;
-            }
-            int verticalLine = board[i][0] + board[i][1] + board[i][2];
-            if (verticalLine == playerTotal) {
-               return true;
-            }
-
-            if (diagonal1 == playerTotal || diagonal2 == playerTotal) {
-                return true;
-            }
+            horizontal += board[i][y-1];
+            vertical += board[x-1][i];
         }
-        return false;
+
+        return diagonal1 == playerTotal
+                || diagonal2 == playerTotal
+                || horizontal == playerTotal
+                || vertical == playerTotal;
     }
 
     private void setBox(int x, int y) {
